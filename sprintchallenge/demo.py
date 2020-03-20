@@ -12,15 +12,13 @@ CREATE TABLE IF NOT EXISTS data (
 )
 """)
 
-data = [['g', 3, 9],
-        ['v', 5, 7],
-        ['f', 8, 7]]
+curs.execute("""
+INSERT INTO data (x, y)
+VALUES (3, 9),
+       (5, 7),
+       (8, 7);
+""")
 
-for row in data:  
-    curs.execute(f"""
-    INSERT INTO data
-    VALUES ({str(row)[1:-1]})
-    """)
 
 conn.commit()
 
@@ -34,6 +32,8 @@ FROM data
 WHERE x>=5
 AND y>=5
 """).fetchall()
+
+"""2"""
 
 """How many unique values of y are there (hint - COUNT() can accept a keyword DISTINCT)?"""
 n_dist_y = curs.execute("""
