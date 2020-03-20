@@ -40,3 +40,5 @@ n_dist_y = curs.execute("""
 SELECT COUNT(DISTINCT(y))
 FROM data 
 """).fetchall()
+
+"""2"""
