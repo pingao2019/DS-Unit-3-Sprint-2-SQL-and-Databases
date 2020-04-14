@@ -60,6 +60,28 @@ curs.execute('''SELECT
  LEFT JOIN charactercreator_cleric as cleric ON cleric.character_ptr_id = c.character_id;''')
 
 
+#method from teacher
+select
+  CASE
+  WHEN cl.character_ptr_id is not null THEN "cleric"
+  WHEN f.character_ptr_id is not null THEN "fighter"
+  WHEN n.mage_ptr_id is not null THEN "mage-necro"
+  WHEN m.character_ptr_id is not null THEN "mage"
+  WHEN th.character_ptr_id is not null THEN "thief"
+  ELSE "todo"
+  END as char_type
+  ,count(distinct ch.character_id) as char_count
+from charactercreator_character as ch
+left join charactercreator_cleric as cl on ch.character_id = cl.character_ptr_id
+left join charactercreator_fighter as f on ch.character_id = f.character_ptr_id
+left join charactercreator_mage as m on ch.character_id = m.character_ptr_id
+left join charactercreator_thief as th on ch.character_id = th.character_ptr_id
+-- left join charactercreator_necromancer as n on ch.character_id = n.character_ptr_id
+left join charactercreator_necromancer as n on m.character_ptr_id = n.mage_ptr_id
+group by char_type
+
+
+
 # How many total items, How many items are not weapons?
 # items (174 rows)
 # weapons (37)
@@ -86,6 +108,9 @@ curs.execute('''SELECT c.character_id
  GROUP BY c.character_id
  LIMIT 20;''')
 
+
+
+
 # On average, how many Items does each Character have?
 # On average, how many Weapons does each character have?
 curs.execute('''SELECT
@@ -99,6 +124,23 @@ curs.execute('''SELECT
  GROUP BY c.character_id;''')
 
 
+# from teacher:
+-- On average, how many Weapons does each character have?
+-- assumption: include chars that don't have any weapons
+-- intermediate step: 
+--   302 rows (row per char)
+--   two columns: one for the character, second for the weapon count
+SELECT avg(weapon_count) as avg_weapons_per_char
+FROM (
+    SELECT 
+      c.character_id
+      ,c.name 
+      ,count(distinct w.item_ptr_id) as weapon_count
+    FROM charactercreator_character c
+    LEFT JOIN charactercreator_character_inventory i ON c.character_id = i.character_id
+    LEFT JOIN armory_weapon w ON i.item_id = w.item_ptr_id
+    GROUP BY c.character_id
+) subq
 
 
  
