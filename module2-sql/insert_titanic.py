@@ -1,6 +1,10 @@
 # module2-sql-for-analysis/insert_titanic.py
+# insert tinanic.csv into table  in pg database
+
+#conn to DB, make a table, read the csvfile and maybe transform the data, insert data into the table.Survived,Pclass,Name,Sex,Age,Siblings/Spouses Aboard,Parents/Children Aboard,Fare
 
 
+import json
 import os
 import sqlite3
 import pandas as pd 
@@ -8,12 +12,10 @@ import psycopg2
 from psycopg2.extras import execute_values
 from dotenv import load_dotenv
 
-
 # read in
-DB_FILEPATH = os.path.join(os.path.dirname(__file__), 'titanic.csv')
-
-df = pd.read_csv(DB_FILEPATH)
-
+#DB_FILEPATH = os.path.join(os.path.dirname(__file__), 'titanic.csv')
+CSV_FILEPATH = os.path.join(os.path.dirname(__file__), "..", "module2-sql", "titanic.csv")
+df = pd.read_csv(CSV_FILEPATH)
 
 load_dotenv() # look in the .env file for env vars, and add them to the env
 DB_NAME = os.getenv("DB_NAME")
