@@ -143,4 +143,4 @@ FROM (
 ) subq
 
 
- 
+ conn.commit()

@@ -57,3 +57,5 @@ print ("Averages:")
 categories = ['Sports','Religious','Nature','Theatre','Shopping','Picnic']
 for i in range(6):
     print(categories[i], ":", row[0][i])
+
+conn.commit()
