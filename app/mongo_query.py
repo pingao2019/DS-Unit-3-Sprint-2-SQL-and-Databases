@@ -22,13 +22,10 @@ CLUSTER_NAME = os.getenv("MONGO_CLUSTER_NAME", default="OOPS")
 
 #MONGO_URL = os.getenv("MONGO_URL", default="OOPS")
 
-​
+#​mongodb+srv://pingao:<password>@clusternosql-mry4t.mongodb.net/test?retryWrites=true&w=majority
 
-connection_uri = f"mongodb+srv://{DB_USER}:{DB_PASSWORD}@{CLUSTER_NAME}.mongodb.net/test?retryWrites=true&w=majority"
+connection_uri = f"mongodb+srv://pingao:<password>@clusternosql-mry4t.mongodb.net/test?retryWrites=true&w=majority"
 
-print("----------------")
-
-print("URI:", connection_uri)
 
 ​
 
@@ -136,7 +133,6 @@ charizard = {
 
 }
 
-​
 
 Rayquaza = {
 

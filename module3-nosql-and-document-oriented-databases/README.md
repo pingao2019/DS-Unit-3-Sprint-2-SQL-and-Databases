@@ -37,6 +37,12 @@ so here. Then answer the following question (can be a comment in the top of your
 code or in Markdown) - "How was working with MongoDB different from working with
 PostgreSQL? What was easier, and what was harder?"
 
+
+Answer : MongoDB is an open-source software  that is used for non-relational database management systems, while PostgreSQL is used for the relational database management system. As PostgreSQL handles relational database, it is object-oriented in nature. In MongoDB, all the contents of the database are documents and files.  
+
+
+
+
 There is no other required tasks to turn in, but it is suggested to then revisit
 the first two modules, rework/complete things as needed, and just check out with
 fresh eyes the SQL approach. Compare and contrast, and come with questions
